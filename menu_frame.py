@@ -65,7 +65,7 @@ weather_frame = main_frame.WeatherWidget(app.main_frame, "https://xml.smg.gov.mo
 battery_frame = main_frame.BatteryWidget(app.main_frame)
 button = main_frame.ButtonWidget(app.main_frame, menu.menu_frame)
 menu_widget = MenuFunctionalWidget(menu.menu_frame)
-menu_return_btn = main_frame.ButtonWidget(menu.menu_frame,app.main_frame)
+menu_return_btn = main_frame.ButtonWidget(menu.menu_frame, app.main_frame)
 menu_widget.creat_functional_btn()
 
 root.mainloop()
