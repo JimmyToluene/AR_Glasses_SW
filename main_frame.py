@@ -5,6 +5,7 @@ from time import strftime
 from PIL import ImageTk, Image
 import psutil
 
+
 class ButtonWidget:
     def __init__(self, master, new_frame):
         self.new_frame = new_frame
@@ -69,6 +70,7 @@ class WeatherWidget:
         wind_speed_value = self.weather_string[3]  # Replace with your logic
         wind_speed = tk.Label(self.weather_frame, text=wind_speed_value, font=("Helvetica", 15), fg="white", bg="grey")
         wind_speed.place(x=50, y=140)
+
 
 
 class BatteryWidget:

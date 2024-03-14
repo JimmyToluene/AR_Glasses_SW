@@ -41,7 +41,7 @@ class MenuFunctionalWidget:
         self.map_btn.configure(background="grey")
         self.map_btn.place(anchor="center", x=100, y=100)
 
-        self.camera_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/camera.png"))
+        self.camera_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/instagram-64.png"))
         self.camera_icon_btn = tk.Button(self.label, image=self.camera_icon)
         self.camera_icon_btn.place(anchor="center", x=200, y=100)
 
@@ -49,23 +49,10 @@ class MenuFunctionalWidget:
         self.voice_icon_btn = tk.Button(self.label, image=self.voice_icon)
         self.voice_icon_btn.place(anchor="center", x=300, y=100)
 
-        self.mail_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/mail-xl.png"))
+        self.mail_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/mail-3-64.png"))
         self.mail_icon_btn = tk.Button(self.label, image=self.mail_icon)
         self.mail_icon_btn.place(anchor="center", x=400, y=100)
 
-        self.ai_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/robot.png"))
+        self.ai_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/assistant-64.png"))
         self.ai_icon_btn = tk.Button(self.label, image=self.ai_icon)
         self.ai_icon_btn.place(anchor="center", x=500, y=100)
-
-root = tk.Tk()
-app = main_frame.MainFrame(root)
-menu = MenuFrame(root)
-main_frame.TimeWidget(app.main_frame)
-weather_frame = main_frame.WeatherWidget(app.main_frame, "https://xml.smg.gov.mo/e_actual_brief.xml")
-battery_frame = main_frame.BatteryWidget(app.main_frame)
-button = main_frame.ButtonWidget(app.main_frame, menu.menu_frame)
-menu_widget = MenuFunctionalWidget(menu.menu_frame)
-menu_return_btn = main_frame.ButtonWidget(menu.menu_frame, app.main_frame)
-menu_widget.creat_functional_btn()
-
-root.mainloop()
