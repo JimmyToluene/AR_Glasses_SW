@@ -4,21 +4,23 @@ from ttkbootstrap import ttk
 from PIL import ImageTk, Image
 
 
-
 class MenuFrame:
     def __init__(self, root):
         self.menu_frame = None
         self.root = root
-        self.create_main_frame()
+        self.create_menu_frame()
 
-    def create_main_frame(self):
+    def create_menu_frame(self):
         self.menu_frame = tk.Frame(self.root, width=640, height=400)
         self.menu_frame.configure(background="black")
         self.menu_frame.pack(anchor='center', fill="both", expand=False)
 
 
 class MenuFunctionalWidget:
-    def __init__(self, master):
+    def __init__(self, master, new_frame):
+        self.new_frame = new_frame
+        self.master = master
+        self.window = None
         self.style = None
         self.ai_icon_btn = None
         self.ai_icon = None
@@ -33,11 +35,12 @@ class MenuFunctionalWidget:
         self.label = tk.Frame(master, width=600, height=200)
         self.label.configure(background="black")
         self.label.place(anchor="center", x=320, y=200)
+
     def creat_functional_btn(self):
         self.style = ttk.Style()
         self.style.configure("BW.TLabel", background="black")
         self.map_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/map.png"))
-        self.map_btn = tk.Button(self.label, image=self.map_icon, background="grey")
+        self.map_btn = tk.Button(self.label, image=self.map_icon, background="grey",command=self.map_button)
         self.map_btn.configure(background="grey")
         self.map_btn.place(anchor="center", x=100, y=100)
 
@@ -56,3 +59,9 @@ class MenuFunctionalWidget:
         self.ai_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/assistant-64.png"))
         self.ai_icon_btn = tk.Button(self.label, image=self.ai_icon)
         self.ai_icon_btn.place(anchor="center", x=500, y=100)
+
+    def map_button(self):
+        self.master.pack_forget()
+        self.new_frame.configure(bg="black")
+        self.new_frame.pack(anchor='center', fill="both", expand=False)
+

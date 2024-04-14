@@ -12,7 +12,7 @@ class ButtonWidget:
         self.master = master
         self.downangle = Image.open("icon/angle/arrow_down.png")
         self.down_angle = ImageTk.PhotoImage(self.downangle.resize((32, 32)))
-        self.return_btn = tk.Button(master, image=self.down_angle, command=self.raise_frame)
+        self.return_btn = tk.Button(self.master, image=self.down_angle, command=self.raise_frame)
         self.return_btn.configure(background="black")
         self.return_btn.place(anchor="center", x=320, y=370)
 
@@ -158,11 +158,3 @@ class MainFrame:
         self.main_frame.configure(background="black")
         self.main_frame.pack(anchor='center', fill="both", expand=False)
 
-
-def main():
-    root = tk.Tk()
-    app = MainFrame(root)
-    TimeWidget(app.main_frame)
-    weather_frame = WeatherWidget(app.main_frame, "https://xml.smg.gov.mo/e_actual_brief.xml")
-    battery_frame = BatteryWidget(app.main_frame)
-    root.mainloop()
