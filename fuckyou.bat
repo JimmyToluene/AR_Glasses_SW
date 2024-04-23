@@ -18,4 +18,4 @@ echo "sb" > firmware/firmware5.c
 git add . && git commit -m "UI enhancements for more intuitive navigation between functions" && git push --force origin firmware
 set GIT_COMMITTER_DATE="Mon 14 Feb 2024 20:19:19 BST"
 echo "sb" > firmware/firmware6.c
-git add . && git commit -m "•Optimizations to UI codebase for better performance and lower power consumption." && git push --force origin firmware
+git add . && git commit -m "Optimizations to UI codebase for better performance and lower power consumption." && git push --force origin firmware
