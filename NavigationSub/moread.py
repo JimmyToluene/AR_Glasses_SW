@@ -8,6 +8,8 @@ import time
 import threading
 from enum import Enum, auto
 
+outputlist = []
+
 GATT_CHRC_IFACE = "org.bluez.GattCharacteristic1"
 DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
 
@@ -25,7 +27,7 @@ class WriteCharacteristic(Characteristic):
     def __init__(self, service):
         Characteristic.__init__(self, self.WRITE_CHARACTERISTIC_UUID, ["write"], service)
 
-    def WriteValue(self, value, options):
+    def WriteValue(self, value, options, outputlist):
         print("Received Data: ", end="")
         data = bytearray(value)
 
@@ -39,8 +41,13 @@ class WriteCharacteristic(Characteristic):
         except UnicodeDecodeError:
             print("Invalid distance data")
 
-        message = f"Basic Data: {basic_data_indicator}, Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}"
+        message = f"Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}"
+        outputlist.append(speed_limit)
+        outputlist.append(direction_name)
+        outputlist.append(direction_value)
+        outputlist.append(distance_str)
         print(message)
+        print(outputlist)
 
 class Direction(Enum):
     DirectionNone = 0

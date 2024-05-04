@@ -30,7 +30,7 @@ class NaviFrame:
         self.speed_label.place(x=200, y=250, anchor="center")
 
     def set_new_data(self, new_data):
-        self.data = new_data
+        self.number_label =
 
     def update_data_display(self):
         if self.data:
