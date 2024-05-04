@@ -9,14 +9,14 @@ import threading
 from enum import Enum, auto
 import multiprocessing
 
-outcome = []
+outcome = [None, None, None, None]
 
 GATT_CHRC_IFACE = "org.bluez.GattCharacteristic1"
 DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
 
 class ESP32Service(Service):
     ESP32_SERVICE_UUID = "DD3F0AD1-6239-4E1F-81F1-91F6C9F01D86"
-    def __init__(self, index):
+    def __init__(self, index,queue):
         Service.__init__(self, index, self.ESP32_SERVICE_UUID, True)
         self.add_characteristic(WriteCharacteristic(self))
         self.add_characteristic(IndicateCharacteristic(self))
@@ -24,10 +24,10 @@ class ESP32Service(Service):
 class WriteCharacteristic(Characteristic):
     WRITE_CHARACTERISTIC_UUID = "DD3F0AD3-6239-4E1F-81F1-91F6C9F01D86"
 
-    def __init__(self, service):
+    def __init__(self, service,queue):
         Characteristic.__init__(self, self.WRITE_CHARACTERISTIC_UUID, ["write"], service)
+        self.queue = queue
     def WriteValue(self, value, options):
-        global outcome
         print("Received Data: ", end="")
         data = bytearray(value)
 
@@ -41,13 +41,16 @@ class WriteCharacteristic(Characteristic):
         except UnicodeDecodeError:
             print("Invalid distance data")
 
-        message = f"Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}"
-        outcome.append(speed_limit)
-        outcome.append(direction_name)
-        outcome.append(direction_code)
-        outcome.append(distance_str)
-        print(message)
-        print(outcome[-1:-4])
+
+        outcome = {
+            'speed_limit': speed_limit,
+            'action': direction_name,
+            'direction_code': direction_code,
+            'distance': distance_str
+        }
+        self.queue.put(outcome)
+        print(f"Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}")
+
 
 class Direction(Enum):
     DirectionNone = 0
@@ -128,13 +131,14 @@ class ESP32Advertisement(Advertisement):
         self.add_local_name("ESP32 BLE Server")
         self.include_tx_power = True
 
-def main_navi(q):
+def main_navi(q, outcome):
     DBusGMainLoop(set_as_default=True)
     bus = dbus.SystemBus()
-
     app = Application()
-    esp32_service = ESP32Service(0)
+    esp32_service = ESP32Service(0,q)
     app.add_service(esp32_service)
+    for outcome in range (0,len(outcome)):
+        outcome = q.put()
 
     adv = ESP32Advertisement(0)
     app.register()
