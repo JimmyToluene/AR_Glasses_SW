@@ -35,6 +35,6 @@ class NaviFrame:
             data = q.get()
             message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
             self.number_label.config(text=data['speed_limit'])
-        self.navi_frame.after(100, self.update_label)
+        self.navi_frame.after(100, self.update_label(q))
 
 
