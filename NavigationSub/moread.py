@@ -23,6 +23,9 @@ class ESP32Service(Service):
 
 class WriteCharacteristic(Characteristic):
     WRITE_CHARACTERISTIC_UUID = "DD3F0AD3-6239-4E1F-81F1-91F6C9F01D86"
+
+    def __init__(self, service):
+        Characteristic.__init__(self, self.WRITE_CHARACTERISTIC_UUID, ["write"], service)
     def WriteValue(self, value, options):
         global outcome
         print("Received Data: ", end="")
