@@ -36,14 +36,10 @@ class NaviFrame:
         try:
             while not self.queue.empty():
                 data = self.queue.get_nowait()
+                message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
+                self.number_label.config(text=data['speed_limit'])
             self.navi_frame.after(100, self.update_label)  # 注意这里
         except Exception as e:
             print(f"An error occurred: {e}")
-
-        while not q.empty():
-            data = q.get()
-            message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
-            self.number_label.config(text=data['speed_limit'])
-        self.navi_frame.after(100, self.update_label(q))
 
 
