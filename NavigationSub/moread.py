@@ -125,7 +125,7 @@ class ESP32Advertisement(Advertisement):
         self.add_local_name("ESP32 BLE Server")
         self.include_tx_power = True
 
-def main_navi():
+def main_navi(q):
     DBusGMainLoop(set_as_default=True)
     bus = dbus.SystemBus()
 
