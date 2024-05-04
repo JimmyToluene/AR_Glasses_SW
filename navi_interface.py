@@ -33,9 +33,9 @@ class NaviFrame:
         self.speed_limit_number.place(x=200, y=180, anchor="center")
         self.speed_limit_tag_label = tk.Label(self.navi_frame, text="Km/H", fg="white", bg="black", font=("Helvetica", 35))
         self.speed_limit_tag_label.place(x=200, y=250, anchor="center")
-        self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 70))
+        self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 40))
         self.direction_label.place(x=500, y=200, anchor="center")
-        self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 70))
+        self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 30))
         self.eta_road.place(x=500, y=300, anchor="center")
 
     def update_information(self):
