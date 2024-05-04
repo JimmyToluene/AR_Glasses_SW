@@ -131,15 +131,12 @@ class ESP32Advertisement(Advertisement):
         self.add_local_name("ESP32 BLE Server")
         self.include_tx_power = True
 
-def main_navi(q, outcome):
+def main_navi(q):
     DBusGMainLoop(set_as_default=True)
     bus = dbus.SystemBus()
     app = Application()
     esp32_service = ESP32Service(0,q)
     app.add_service(esp32_service)
-    for outcome in range (0,len(outcome)):
-        outcome = q.put()
-
     adv = ESP32Advertisement(0)
     app.register()
     adv.register()
