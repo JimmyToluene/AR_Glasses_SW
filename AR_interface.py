@@ -13,7 +13,7 @@ def run_gui(q):
 
     main_frame.TimeWidget(main.main_frame)
     weather_frame = main_frame.WeatherWidget(main.main_frame, "https://xml.smg.gov.mo/e_actual_brief.xml")
-    battery_frame = main_frame.BatteryWidget(main.main_frame)
+    #battery_frame = main_frame.BatteryWidget(main.main_frame)
     button = main_frame.ButtonWidget(main.main_frame, menu.menu_frame)
     menu_widget = menu_frame.MenuFunctionalWidget(menu.menu_frame, navi.navi_frame)
     navi_return_btn = main_frame.ButtonWidget(navi.navi_frame, menu.menu_frame)
