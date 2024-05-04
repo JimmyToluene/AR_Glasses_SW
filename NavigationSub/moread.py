@@ -27,7 +27,7 @@ class WriteCharacteristic(Characteristic):
     def __init__(self, service):
         Characteristic.__init__(self, self.WRITE_CHARACTERISTIC_UUID, ["write"], service)
 
-    def WriteValue(self, value, options, outputlist):
+    def WriteValue(self, value, options):
         print("Received Data: ", end="")
         data = bytearray(value)
 
