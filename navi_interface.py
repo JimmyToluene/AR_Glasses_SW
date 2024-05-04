@@ -6,7 +6,7 @@ from NavigationSub import moread
 import threading
 
 class NaviFrame:
-    def __init__(self, root):
+    def __init__(self, root, q):
         self.number_label = None
         self.test_label = None
         self.navi_frame = None
@@ -31,10 +31,11 @@ class NaviFrame:
         self.speed_label = tk.Label(self.navi_frame, text="Km/H", fg="white", bg="black", font=("Helvetica", 35))
         self.speed_label.place(x=200, y=250, anchor="center")
 
-    def set_new_data(self, new_data):
-        pass
-
-    def update_data_display(self):
-        self.navi_frame.after(1000, self.update_data_display)
+    def update_label(self, q):
+        while not q.empty():
+            data = q.get()
+            message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
+            self.number_label.config(text=data['speed_limit'])
+        self.navi_frame.after(100, self.update_label)
 
 
