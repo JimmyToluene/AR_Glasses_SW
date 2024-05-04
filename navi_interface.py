@@ -2,10 +2,10 @@ import main_frame
 import tkinter as tk
 from ttkbootstrap import ttk
 from PIL import ImageTk, Image
-
-
+from NavigationSub import moread
 class NaviFrame:
     def __init__(self, root):
+        self.number_label = None
         self.test_label = None
         self.navi_frame = None
         self.canvas = None
@@ -30,14 +30,10 @@ class NaviFrame:
         self.speed_label.place(x=200, y=250, anchor="center")
 
     def set_new_data(self, new_data):
-        self.number_label =
+        self.number_label = moread.outputlist[0]
 
     def update_data_display(self):
-        if self.data:
-            self.number_label.config(text=str(self.data[0]))
-        else:
-            self.number_label.config(text="No Data")
-        # 每1秒钟调用一次自身，以反映可能的数据更新
+        self.number_label = moread.outputlist[0]
         self.navi_frame.after(1000, self.update_data_display)
 
 

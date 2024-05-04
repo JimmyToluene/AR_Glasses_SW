@@ -42,10 +42,11 @@ class WriteCharacteristic(Characteristic):
             print("Invalid distance data")
 
         message = f"Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}"
-        outputlist.append(speed_limit)
-        outputlist.append(direction_name)
-        outputlist.append(direction_value)
-        outputlist.append(distance_str)
+        for outputlist in range(0,3):
+            outputlist[0] = speed_limit
+            outputlist[1] = direction_name
+            outputlist[2] = direction_value
+            outputlist[3] = distance_str
         print(message)
         print(outputlist)
 
