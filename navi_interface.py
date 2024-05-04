@@ -46,7 +46,8 @@ class NaviFrame:
                 self.speed_limit_number.config(text=data['speed_limit'])
                 self.direction_label.config(text=data['action'])
                 self.eta_road.config(text=data['distance'])
-            self.navi_frame.after(100, self.update_information())  # 注意这里
+
+            self.navi_frame.after(100, self.update_information)
         except Exception as e:
             print(f"An error occurred: {e}")
 
