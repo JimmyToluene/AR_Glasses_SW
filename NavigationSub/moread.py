@@ -1,7 +1,7 @@
 import dbus
 from dbus.mainloop.glib import DBusGMainLoop
-from advertisement import Advertisement
-from service import Application, Service, Characteristic, Descriptor
+from NavigationSub.advertisement import Advertisement
+from NavigationSub.service import Application, Service, Characteristic, Descriptor
 import dbus.exceptions
 import array
 import time
