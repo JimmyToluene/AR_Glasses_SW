@@ -6,6 +6,7 @@ import dbus.exceptions
 import array
 import time
 import threading
+from enum import Enum, auto
 
 GATT_CHRC_IFACE = "org.bluez.GattCharacteristic1"
 DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
@@ -32,14 +33,62 @@ class WriteCharacteristic(Characteristic):
         speed_limit = data[1]
         direction_code = data[2]
         distance_bytes = data[3:]
+        direction_value, direction_name = check_direction(direction_code)
         try:
             distance_str = distance_bytes.decode('ascii')
         except UnicodeDecodeError:
             print("Invalid distance data")
-        message = f"Basic Data: {basic_data_indicator}, Speed Limit: {speed_limit} km/h, Action: {direction_code}, Distance: {distance_str}"
+
+        message = f"Basic Data: {basic_data_indicator}, Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}"
         print(message)
 
-        # Here you can add parsing of the received data
+class Direction(Enum):
+    DirectionNone = 0
+    DirectionStart = 1
+    DirectionEasyLeft = 2
+    DirectionEasyRight = 3
+    DirectionEnd = 4
+    DirectionVia = 5
+    DirectionKeepLeft = 6
+    DirectionKeepRight = 7
+    DirectionLeft = 8
+    DirectionOutOfRoute = 9
+    DirectionRight = 10
+    DirectionSharpLeft = 11
+    DirectionSharpRight = 12
+    DirectionStraight = 13
+    DirectionUTurnLeft = 14
+    DirectionUTurnRight = 15
+    DirectionFerry = 16
+    DirectionStateBoundary = 17
+    DirectionFollow = 18
+    DirectionMotorway = 19
+    DirectionTunnel = 20
+    DirectionExitLeft = 21
+    DirectionExitRight = 22
+    DirectionRoundaboutRSE = 23
+    DirectionRoundaboutRE = 24
+    DirectionRoundaboutRNE = 25
+    DirectionRoundaboutRN = 26
+    DirectionRoundaboutRNW = 27
+    DirectionRoundaboutRW = 28
+    DirectionRoundaboutRSW = 29
+    DirectionRoundaboutRS = 30
+    DirectionRoundaboutLSE = 31
+    DirectionRoundaboutLE = 32
+    DirectionRoundaboutLNE = 33
+    DirectionRoundaboutLN = 34
+    DirectionRoundaboutLNW = 35
+    DirectionRoundaboutLW = 36
+    DirectionRoundaboutLSW = 37
+    DirectionRoundaboutLS = 38
+
+def check_direction(direction_code):
+    try:
+        direction = Direction(direction_code)
+        return direction.value, direction.name
+    except ValueError:
+        return None, "Invalid direction code"
 
 class IndicateCharacteristic(Characteristic):
     INDICATE_CHARACTERISTIC_UUID = "DD3F0AD2-6239-4E1F-81F1-91F6C9F01D86"
