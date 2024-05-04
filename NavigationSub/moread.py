@@ -18,7 +18,7 @@ class ESP32Service(Service):
     ESP32_SERVICE_UUID = "DD3F0AD1-6239-4E1F-81F1-91F6C9F01D86"
     def __init__(self, index,queue):
         Service.__init__(self, index, self.ESP32_SERVICE_UUID, True)
-        self.add_characteristic(WriteCharacteristic(self))
+        self.add_characteristic(WriteCharacteristic(self,queue))
         self.add_characteristic(IndicateCharacteristic(self))
 
 class WriteCharacteristic(Characteristic):
