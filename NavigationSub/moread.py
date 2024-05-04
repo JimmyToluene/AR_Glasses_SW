@@ -19,7 +19,6 @@ class ESP32Service(Service):
         self.add_characteristic(IndicateCharacteristic(self))
 
 class WriteCharacteristic(Characteristic):
-    global distance_str
     WRITE_CHARACTERISTIC_UUID = "DD3F0AD3-6239-4E1F-81F1-91F6C9F01D86"
 
     def __init__(self, service):
@@ -29,29 +28,21 @@ class WriteCharacteristic(Characteristic):
         print("Received Data: ", end="")
         data = bytearray(value)
 
-        if len(data) < 4:
-            print("Data format error or data too short.")
-
         basic_data_indicator = data[0]
         speed_limit = data[1]
         direction_code = data[2]
         distance_bytes = data[3:]
-
         try:
             distance_str = distance_bytes.decode('ascii')
         except UnicodeDecodeError:
             print("Invalid distance data")
-
-
-
-    # Construct the message with timestamp
         message = f"Basic Data: {basic_data_indicator}, Speed Limit: {speed_limit} km/h, Action: {direction_code}, Distance: {distance_str}"
         print(message)
 
-
+        # Here you can add parsing of the received data
 
 class IndicateCharacteristic(Characteristic):
-    INDICATE_CHARACTERISTIC_UUID = "DD3F0AD4-6239-4E1F-81F1-91F6C9F01D86"
+    INDICATE_CHARACTERISTIC_UUID = "DD3F0AD2-6239-4E1F-81F1-91F6C9F01D86"
 
     def __init__(self, service):
         Characteristic.__init__(self, self.INDICATE_CHARACTERISTIC_UUID, ["indicate"], service)
@@ -78,14 +69,14 @@ class ESP32Advertisement(Advertisement):
     def __init__(self, index):
         Advertisement.__init__(self, index, "peripheral")
         self.add_service_uuid(ESP32Service.ESP32_SERVICE_UUID)
-        self.add_local_name("AR GLASSES BLE Server")
+        self.add_local_name("ESP32 BLE Server")
         self.include_tx_power = True
 
 def main():
     DBusGMainLoop(set_as_default=True)
     bus = dbus.SystemBus()
 
-    app = Application(bus)
+    app = Application()
     esp32_service = ESP32Service(0)
     app.add_service(esp32_service)
 
