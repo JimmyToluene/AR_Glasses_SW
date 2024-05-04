@@ -15,7 +15,6 @@ class NaviFrame:
         self.data = [0]  # 初始化数据数组
         self.create_navi_frame()
         self.create_speedlimit_display_widget()
-        self.update_data_display()
 
     def create_navi_frame(self):
         self.navi_frame = tk.Frame(self.root, width=640, height=400)
