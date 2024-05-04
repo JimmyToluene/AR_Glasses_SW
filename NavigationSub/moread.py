@@ -8,6 +8,7 @@ import time
 import threading
 from enum import Enum, auto
 
+outcome = []
 
 GATT_CHRC_IFACE = "org.bluez.GattCharacteristic1"
 DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
@@ -22,9 +23,8 @@ class ESP32Service(Service):
 
 class WriteCharacteristic(Characteristic):
     WRITE_CHARACTERISTIC_UUID = "DD3F0AD3-6239-4E1F-81F1-91F6C9F01D86"
-
     def WriteValue(self, value, options):
-        self.outputlist = []
+        global outcome
         print("Received Data: ", end="")
         data = bytearray(value)
 
@@ -39,14 +39,14 @@ class WriteCharacteristic(Characteristic):
             print("Invalid distance data")
 
         message = f"Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}"
-        for outputlist in range(0,3):
-            outputlist[0] = speed_limit
-            outputlist[1] = direction_name
-            outputlist[2] = direction_value
-            outputlist[3] = distance_str
+        for outcome in range(0,3):
+            outcome[0] = speed_limit
+            outcome[1] = direction_name
+            outcome[2] = direction_value
+            outcome[3] = distance_str
 
         print(message)
-        print(outputlist)
+        print(outcome)
 
 class Direction(Enum):
     DirectionNone = 0
