@@ -4,6 +4,7 @@ import tkinter as tk
 import navi_interface
 import threading
 import NavigationSub.moread
+from multiprocessing import Process, Queue
 def run_gui():
     root = tk.Tk()
     main = main_frame.MainFrame(root)
@@ -20,17 +21,23 @@ def run_gui():
     menu_return_btn = main_frame.ButtonWidget(menu.menu_frame ,main.main_frame)
     root.mainloop()
 
+
 def main():
-    # 创建并启动BLE服务线程
-    ble_thread = threading.Thread(target=NavigationSub.moread.main_navi)
-    ble_thread.start()
+    q = Queue()
 
-    # 创建并启动Tkinter GUI线程
-    gui_thread = threading.Thread(target=run_gui)
-    gui_thread.start()
+    # 创建 GUI 进程
+    gui_process = Process(target=run_gui, args=(q,))
 
-    ble_thread.join()
-    gui_thread.join()
+    # 创建 BLE 服务进程
+    ble_process = Process(target=NavigationSub.moread.main_navi, args=(q,))
+
+    # 启动进程
+    gui_process.start()
+    ble_process.start()
+
+    # 等待进程完成
+    gui_process.join()
+    ble_process.join()
 
 if __name__ == "__main__":
     main()

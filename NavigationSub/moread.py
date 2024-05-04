@@ -7,6 +7,7 @@ import array
 import time
 import threading
 from enum import Enum, auto
+import multiprocessing
 
 outcome = []
 
@@ -15,7 +16,6 @@ DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
 
 class ESP32Service(Service):
     ESP32_SERVICE_UUID = "DD3F0AD1-6239-4E1F-81F1-91F6C9F01D86"
-
     def __init__(self, index):
         Service.__init__(self, index, self.ESP32_SERVICE_UUID, True)
         self.add_characteristic(WriteCharacteristic(self))
@@ -39,14 +39,12 @@ class WriteCharacteristic(Characteristic):
             print("Invalid distance data")
 
         message = f"Speed Limit: {speed_limit} km/h, Action: {direction_name}, Distance: {distance_str}"
-        for outcome in range(0,3):
-            outcome[0] = speed_limit
-            outcome[1] = direction_name
-            outcome[2] = direction_value
-            outcome[3] = distance_str
-
+        outcome.append(speed_limit)
+        outcome.append(direction_name)
+        outcome.append(direction_code)
+        outcome.append(distance_str)
         print(message)
-        print(outcome)
+        print(outcome[-1:-4])
 
 class Direction(Enum):
     DirectionNone = 0
