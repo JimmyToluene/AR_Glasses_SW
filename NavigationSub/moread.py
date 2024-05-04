@@ -129,7 +129,7 @@ class ESP32Advertisement(Advertisement):
         self.add_local_name("ESP32 BLE Server")
         self.include_tx_power = True
 
-def main():
+def main_navi():
     DBusGMainLoop(set_as_default=True)
     bus = dbus.SystemBus()
 
@@ -145,6 +145,3 @@ def main():
         app.run()
     except KeyboardInterrupt:
         app.quit()
-
-if __name__ == "__main__":
-    main()
