@@ -19,6 +19,7 @@ class ESP32Service(Service):
         self.add_characteristic(IndicateCharacteristic(self))
 
 class WriteCharacteristic(Characteristic):
+    global distance_str
     WRITE_CHARACTERISTIC_UUID = "DD3F0AD3-6239-4E1F-81F1-91F6C9F01D86"
 
     def __init__(self, service):
@@ -32,7 +33,6 @@ class WriteCharacteristic(Characteristic):
 
     if len(data) < 4:
         print("Data format error or data too short.")
-        return
 
     basic_data_indicator = data[0]
     speed_limit = data[1]
@@ -43,12 +43,11 @@ class WriteCharacteristic(Characteristic):
         distance_str = distance_bytes.decode('ascii')
     except UnicodeDecodeError:
         print("Invalid distance data")
-        return
 
-    direction_action = imageFromDirection(direction_code)
+
 
     # Construct the message with timestamp
-    message = f"Basic Data: {basic_data_indicator}, Speed Limit: {speed_limit} km/h, Action: {direction_action}, Distance: {distance_str}"
+    message = f"Basic Data: {basic_data_indicator}, Speed Limit: {speed_limit} km/h, Action: {direction_code}, Distance: {distance_str}"
     print(message)
 
 
