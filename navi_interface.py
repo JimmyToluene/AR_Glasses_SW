@@ -3,6 +3,7 @@ import tkinter as tk
 from ttkbootstrap import ttk
 from PIL import ImageTk, Image
 from NavigationSub import moread
+import threading
 
 class NaviFrame:
     def __init__(self, root):
@@ -23,7 +24,6 @@ class NaviFrame:
         self.canvas = tk.Canvas(self.navi_frame, width=640,height=400, bg='black')
         self.canvas.pack(fill="both",expand=True)
         self.canvas.create_oval(100, 100, 300, 300, outline="red", width=10)
-        moread.main_navi()
 
     def create_speedlimit_display_widget(self):
         self.number_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 70))

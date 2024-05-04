@@ -8,7 +8,6 @@ import time
 import threading
 from enum import Enum, auto
 
-outputlist = []
 
 GATT_CHRC_IFACE = "org.bluez.GattCharacteristic1"
 DBUS_PROP_IFACE = "org.freedesktop.DBus.Properties"
@@ -24,11 +23,8 @@ class ESP32Service(Service):
 class WriteCharacteristic(Characteristic):
     WRITE_CHARACTERISTIC_UUID = "DD3F0AD3-6239-4E1F-81F1-91F6C9F01D86"
 
-    def __init__(self, service):
-        Characteristic.__init__(self, self.WRITE_CHARACTERISTIC_UUID, ["write"], service)
-
     def WriteValue(self, value, options):
-        global outputlist
+        self.outputlist = []
         print("Received Data: ", end="")
         data = bytearray(value)
 
@@ -48,6 +44,7 @@ class WriteCharacteristic(Characteristic):
             outputlist[1] = direction_name
             outputlist[2] = direction_value
             outputlist[3] = distance_str
+
         print(message)
         print(outputlist)
 
@@ -146,3 +143,4 @@ def main_navi():
         app.run()
     except KeyboardInterrupt:
         app.quit()
+
