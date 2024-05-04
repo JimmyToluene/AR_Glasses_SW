@@ -10,7 +10,6 @@ def run_gui(q):
     main = main_frame.MainFrame(root)
     menu = menu_frame.MenuFrame(root)
     navi = navi_interface.NaviFrame(root, q)
-    navi.update_label(q)
 
     main_frame.TimeWidget(main.main_frame)
     weather_frame = main_frame.WeatherWidget(main.main_frame, "https://xml.smg.gov.mo/e_actual_brief.xml")

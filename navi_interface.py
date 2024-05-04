@@ -7,6 +7,7 @@ import threading
 
 class NaviFrame:
     def __init__(self, root, q):
+        self.queue = q
         self.number_label = None
         self.test_label = None
         self.navi_frame = None
@@ -15,6 +16,7 @@ class NaviFrame:
         self.data = [0]  # 初始化数据数组
         self.create_navi_frame()
         self.create_speedlimit_display_widget()
+        self.update_label()
 
     def create_navi_frame(self):
         self.navi_frame = tk.Frame(self.root, width=640, height=400)
@@ -30,7 +32,14 @@ class NaviFrame:
         self.speed_label = tk.Label(self.navi_frame, text="Km/H", fg="white", bg="black", font=("Helvetica", 35))
         self.speed_label.place(x=200, y=250, anchor="center")
 
-    def update_label(self, q):
+    def update_label(self):
+        try:
+            while not self.queue.empty():
+                data = self.queue.get_nowait()
+            self.navi_frame.after(100, self.update_label)  # 注意这里
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
         while not q.empty():
             data = q.get()
             message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
