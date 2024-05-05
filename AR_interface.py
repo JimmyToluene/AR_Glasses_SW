@@ -2,9 +2,9 @@ import main_frame
 import menu_frame
 import tkinter as tk
 import navi_interface
-import threading
-import NavigationSub.moread
 from multiprocessing import Process, Queue
+
+
 def run_gui(q):
     root = tk.Tk()
     main = main_frame.MainFrame(root)
@@ -33,6 +33,12 @@ def main():
     gui_process.join()
     ble_process.join()
 
-if __name__ == "__main__":
-    main()
+
+try:
+    import NavigationSub.moread
+    if __name__ == "__main__":
+        main()
+except:
+    q = Queue
+    run_gui(q)
 
