@@ -51,7 +51,7 @@ class NaviFrame:
                 self.eta_road.config(text=data['distance'])
                 file_name = f"./icon/navi_icon/png/{data['direction_code']}.png"
                 img = Image.open(file_name)
-                img = img.resize((60, 60))
+                img = img.resize((24, 24))
                 photo = ImageTk.PhotoImage(img)
                 self.direction_icon.image = img
                 self.direction_icon.config(image=photo)
