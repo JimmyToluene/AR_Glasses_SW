@@ -31,11 +31,11 @@ class NaviFrame:
 
     def create_information_display_widget(self):
         self.speed_limit_number = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 70))
-        self.speed_limit_number.place(x=180, y=190, anchor="center")
+        self.speed_limit_number.place(x=180, y=170, anchor="center")
         self.speed_limit_tag_label = tk.Label(self.navi_frame, text="Km/H", fg="white", bg="black", font=("Helvetica", 35))
-        self.speed_limit_tag_label.place(x=180, y=250, anchor="center")
-        self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 30))
-        self.direction_label.place(x=470, y=260, anchor="center")
+        self.speed_limit_tag_label.place(x=180, y=230, anchor="center")
+        self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 27))
+        self.direction_label.place(x=470, y=240, anchor="center")
         self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 33))
         self.eta_road.place(x=470, y=290, anchor="center")
         self.direction_icon = tk.Label(self.navi_frame, image="", bg="black")
