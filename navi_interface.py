@@ -27,19 +27,19 @@ class NaviFrame:
         self.navi_frame.pack(anchor='center', fill="both", expand=True)
         self.canvas = tk.Canvas(self.navi_frame, width=640,height=400, bg='black')
         self.canvas.pack(fill="both",expand=True)
-        self.canvas.create_oval(100, 100, 300, 300, outline="red", width=10)
+        self.canvas.create_oval(80, 80, 280, 280, outline="red", width=10)
 
     def create_information_display_widget(self):
         self.speed_limit_number = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 70))
-        self.speed_limit_number.place(x=200, y=180, anchor="center")
+        self.speed_limit_number.place(x=180, y=190, anchor="center")
         self.speed_limit_tag_label = tk.Label(self.navi_frame, text="Km/H", fg="white", bg="black", font=("Helvetica", 35))
-        self.speed_limit_tag_label.place(x=200, y=250, anchor="center")
-        self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 33))
-        self.direction_label.place(x=470, y=270, anchor="center")
-        self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 30))
-        self.eta_road.place(x=470, y=300, anchor="center")
+        self.speed_limit_tag_label.place(x=180, y=250, anchor="center")
+        self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 30))
+        self.direction_label.place(x=470, y=260, anchor="center")
+        self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 33))
+        self.eta_road.place(x=470, y=290, anchor="center")
         self.direction_icon = tk.Label(self.navi_frame, image="", bg="black")
-        self.direction_icon.place(x=500, y=100, anchor="center")
+        self.direction_icon.place(x=470, y=100, anchor="center")
 
     def update_information(self):
         global data
