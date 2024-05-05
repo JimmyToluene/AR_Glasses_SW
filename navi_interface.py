@@ -53,10 +53,9 @@ class NaviFrame:
             try :
                 file_name = f"./icon/navi_icon/png/{data['direction_code']}.png"
                 img = Image.open(file_name)
-                img = img.resize((24, 24))
                 photo = ImageTk.PhotoImage(img)
                 self.direction_icon.config(image=photo)
-                self.direction_icon.image = img
+                self.direction_icon.image = photo
             except Exception as e:
                 print(f"An error occurred: {e}")
             self.navi_frame.after(500, self.update_information)
