@@ -30,6 +30,7 @@ class WriteCharacteristic(Characteristic):
     def WriteValue(self, value, options):
         print("Received Data: ", end="")
         data = bytearray(value)
+        print(data)
 
         basic_data_indicator = data[0]
         speed_limit = data[1]
