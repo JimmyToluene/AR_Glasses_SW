@@ -41,7 +41,6 @@ class MenuFunctionalWidget:
         self.style.configure("BW.TLabel", background="black")
         self.map_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/map.png"))
         self.map_btn = tk.Button(self.label, image=self.map_icon,command=self.map_button)
-        self.map_btn.configure(background="grey")
         self.map_btn.place(anchor="center", x=100, y=100)
 
         self.camera_icon = ImageTk.PhotoImage(Image.open("icon/menu_icon/instagram-64.png"))

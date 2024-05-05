@@ -36,6 +36,7 @@ class NaviFrame:
         self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black", font=("Helvetica", 33))
         self.eta_road.place(x=470, y=290, anchor="center")
         self.direction_icon = tk.Label(self.navi_frame, image="", bg="black")
+        self.direction_icon.place(x=470, y=100, anchor="center")
 
     def update_information(self):
         global data
