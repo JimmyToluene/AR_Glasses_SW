@@ -30,7 +30,7 @@ class NaviFrame:
         self.canvas = tk.Canvas(self.navi_frame, width=250, height=250, bg='black',bd=0, highlightthickness=0,relief='ridge')
         outer_circle = self.canvas.create_oval(5, 5, 150, 150, outline='red', width=10)
         inner_circle = self.canvas.create_oval(10, 10, 145, 145, fill='white', outline='')
-        self.speed_limit_number = tk.Label(self.navi_frame, text="", bg="white", font=("Helvetica", 50, 'bold'))
+        self.speed_limit_number = tk.Label(self.navi_frame, text="", bg="white", font=("Helvetica", 55, 'bold'))
         self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black", font=("Helvetica", 27))
         self.direction_label.place(x=470, y=240, anchor="center")
         self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black", font=("Helvetica", 33))
@@ -49,7 +49,7 @@ class NaviFrame:
                 else:
                     self.speed_limit_number.config(text=data['speed_limit'])
                     self.canvas.place(x=170, y=150, anchor='center')
-                    self.speed_limit_number.place(x=120, y=80 ,anchor="center")
+                    self.speed_limit_number.place(x=120, y=110 ,anchor="center")
                 self.direction_label.config(text=data['action'])
                 self.eta_road.config(text=data['distance'] + " left")
             try:
