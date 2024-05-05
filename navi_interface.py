@@ -48,8 +48,8 @@ class NaviFrame:
                     break
                 else:
                     self.speed_limit_number.config(text=data['speed_limit'])
-                    self.canvas.place(x=170, y=150, anchor='center')
-                    self.speed_limit_number.place(x=120, y=115 ,anchor="center")
+                    self.canvas.place(x=200, y=150, anchor='center')
+                    self.speed_limit_number.place(x=170, y=115 ,anchor="center")
                 self.direction_label.config(text=data['action'])
                 self.eta_road.config(text=data['distance'] + " left")
             try:
