@@ -27,7 +27,7 @@ class NaviFrame:
 
 
     def create_information_display_widget(self):
-        self.canvas = tk.Canvas(self.navi_frame, width=200, height=200, bg='black',bd=0, highlightthickness=0,relief='ridge')
+        self.canvas = tk.Canvas(self.navi_frame, width=250, height=250, bg='black',bd=0, highlightthickness=0,relief='ridge')
         outer_circle = self.canvas.create_oval(50, 50, 150, 150, outline='red', width=10)
         inner_circle = self.canvas.create_oval(55, 55, 145, 145, fill='white', outline='')
         self.speed_limit_number = tk.Label(self.navi_frame, text="", bg="white", font=("Helvetica", 35, 'bold'))
@@ -48,7 +48,7 @@ class NaviFrame:
                     break
                 else:
                     self.speed_limit_number.config(text=data['speed_limit'])
-                    self.canvas.place(x=240, y=250, anchor='center')
+                    self.canvas.place(x=160, y=150, anchor='center')
                     self.speed_limit_number.place(x=240, y=255, anchor="center")
                 self.direction_label.config(text=data['action'])
                 self.eta_road.config(text=data['distance'] + " left")
