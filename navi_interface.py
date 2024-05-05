@@ -57,7 +57,7 @@ class NaviFrame:
                 self.direction_icon.config(image=photo)
                 self.direction_icon.image = photo
             except Exception as e:
-                self.direction_label.config(text="BLE Not Connected")
+                print(f"An error occurred: {e}")
             self.navi_frame.after(500, self.update_information)
         except Exception as e:
             print(f"An error occurred: {e}")
