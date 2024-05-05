@@ -42,9 +42,9 @@ class NaviFrame:
         global data
         try:
             while not self.queue.empty():
-                message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
                 data = self.queue.get_nowait()
-                if data['speed_limit'] == 0:
+                message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
+                if data['speed_limit'] == '0':
                     break
                 else:
                     self.speed_limit_number.config(text=data['speed_limit'])
