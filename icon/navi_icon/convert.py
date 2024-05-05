@@ -17,11 +17,11 @@ def convert_android_vector_to_svg(xml_content):
 
     # 替换颜色引用为白色
 
-
     # 确保所有 vector 结束标签都被替换为 svg 结束标签
     svg_content = svg_content.replace('</vector>', '</svg>')
 
     return svg_content
+
 
 def process_files(base_path, numbers):
     svg_folder = "svg"
@@ -36,15 +36,17 @@ def process_files(base_path, numbers):
 
         try:
             import cairosvg
-            cairosvg.svg2png(url=output_svg_path, write_to=output_png_path)
+            cairosvg.svg2png(url=output_svg_path, write_to=output_png_path, output_width=150, output_height=150)
             print(f"Processed file {number} successfully.")
         except Exception as e:
             print(f"Failed to process file {number}: {e}")
 
+
 def main():
     base_path = "./xml"
-    numbers = [1,4,6,7,8,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30]  # List of file numbers to process
+    numbers = list(range(0, 39))
     process_files(base_path, numbers)
+
 
 if __name__ == "__main__":
     main()
