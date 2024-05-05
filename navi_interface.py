@@ -6,6 +6,7 @@ from PIL import ImageTk, Image
 
 class NaviFrame:
     def __init__(self, root, q):
+        self.warning_label = None
         self.direction_icon = None
         self.eta_road = None
         self.direction_label = None
@@ -37,16 +38,19 @@ class NaviFrame:
         self.eta_road.place(x=470, y=290, anchor="center")
         self.direction_icon = tk.Label(self.navi_frame, image="", bg="black")
         self.direction_icon.place(x=470, y=100, anchor="center")
+        self.warning_label = tk.Label(self.navi_frame, text="Device not connected")
 
     def update_information(self):
         global data
         try:
             while not self.queue.empty():
+                self.warning_label.config(text="")
                 data = self.queue.get_nowait()
                 message = f"Speed Limit: {data['speed_limit']} km/h, Action: {data['action']}, Distance: {data['distance']}"
                 if data['speed_limit'] == '0':
                     break
                 else:
+
                     self.speed_limit_number.config(text=data['speed_limit'])
                     self.canvas.place(x=200, y=150, anchor='center')
                     self.speed_limit_number.place(x=150, y=110 ,anchor="center")
@@ -63,3 +67,5 @@ class NaviFrame:
             self.navi_frame.after(500, self.update_information)
         except Exception as e:
             print(f"An error occurred: {e}")
+            self.warning_label.pack(anchor=tk.CENTER)
+            self.navi_frame.after(500, self.update_information)
