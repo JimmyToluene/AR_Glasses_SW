@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="48px" height="48px">
     <g transform="scale(-1,1) translate(-48,2)">
         <path
-                fill = "#FFFFFF"
+                fill = "#808080"
                 d="M0 46L0 2 6 2 6 46Z"
         />
         <path

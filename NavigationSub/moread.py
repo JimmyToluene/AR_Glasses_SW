@@ -53,7 +53,7 @@ class WriteCharacteristic(Characteristic):
 
 
 class Direction(Enum):
-    DirectionNone = 0
+    NoEndPoint = 0
     Start = 1
     EasyLeft = 2
     EasyRight = 3
@@ -61,14 +61,14 @@ class Direction(Enum):
     Via = 5
     KeepLeft = 6
     KeepRight = 7
-    Left = 8
+    TurnLeft = 8
     OutOfRoute = 9
-    Right = 10
+    TurnRight = 10
     SharpLeft = 11
     SharpRight = 12
-    Straight = 13
-    UTurnLeft = 14
-    UTurnRight = 15
+    GoStraight = 13
+    UtterTurnLeft = 14
+    UtterTurnRight = 15
     Ferry = 16
     StateBoundary = 17
     Follow = 18
