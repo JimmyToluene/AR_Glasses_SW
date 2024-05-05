@@ -7,6 +7,8 @@ from multiprocessing import Process, Queue
 
 def run_gui(q):
     root = tk.Tk()
+    root.attributes('-fullscreen', True)
+
     main = main_frame.MainFrame(root)
     menu = menu_frame.MenuFrame(root)
     navi = navi_interface.NaviFrame(root, q)
