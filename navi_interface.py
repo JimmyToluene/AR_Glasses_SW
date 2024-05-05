@@ -53,6 +53,7 @@ class NaviFrame:
                 img = Image.open(file_name)
                 img = img.resize((60, 60))
                 photo = ImageTk.PhotoImage(img)
+                self.direction_icon.image = img
                 self.direction_icon.config(image=photo)
             self.navi_frame.after(500, self.update_information)
         except Exception as e:
