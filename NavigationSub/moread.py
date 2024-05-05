@@ -54,7 +54,7 @@ class WriteCharacteristic(Characteristic):
 
 
 class Direction(Enum):
-    NoEndPoint = 0
+    NoSetPoint = 0
     Start = 1
     EasyLeft = 2
     EasyRight = 3
