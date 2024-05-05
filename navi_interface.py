@@ -55,8 +55,8 @@ class NaviFrame:
                 img = Image.open(file_name)
                 img = img.resize((24, 24))
                 photo = ImageTk.PhotoImage(img)
-                self.direction_icon.image = img
                 self.direction_icon.config(image=photo)
+                self.direction_icon.image = img
             except Exception as e:
                 print(f"An error occurred: {e}")
             self.navi_frame.after(500, self.update_information)
