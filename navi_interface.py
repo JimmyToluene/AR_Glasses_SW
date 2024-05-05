@@ -35,11 +35,11 @@ class NaviFrame:
         self.speed_limit_tag_label = tk.Label(self.navi_frame, text="Km/H", fg="white", bg="black", font=("Helvetica", 35))
         self.speed_limit_tag_label.place(x=200, y=250, anchor="center")
         self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 35))
-        self.direction_label.place(x=500, y=100, anchor="center")
+        self.direction_label.place(x=500, y=270, anchor="center")
         self.eta_road = tk.Label(self.navi_frame, text="", fg="white", bg="black",font=("Helvetica", 30))
         self.eta_road.place(x=500, y=300, anchor="center")
         self.direction_icon = tk.Label(self.navi_frame, image="", fg="white", bg="black",font=("Helvetica", 35))
-        self.eta_road.place(x=500, y=50, anchor="center")
+        self.direction_icon.place(x=500, y=50, anchor="center")
 
     def update_information(self):
         try:
@@ -49,7 +49,7 @@ class NaviFrame:
                 self.speed_limit_number.config(text=data['speed_limit'])
                 self.direction_label.config(text=data['action'])
                 self.eta_road.config(text=data['distance'])
-                file_name = f"./icon/navi_icon/{data['direction_code']}.png"
+                file_name = f"./icon/navi_icon/png/{data['direction_code']}.png"
                 img = Image.open(file_name)
                 img = img.resize((24, 24), Image.ANTIALIAS)
                 photo = ImageTk.PhotoImage(img)
