@@ -32,7 +32,7 @@ class NaviFrame:
         outer_circle = self.canvas.create_oval(50, 50, 150, 150, outline='red', width=10)
         inner_circle = self.canvas.create_oval(55, 55, 145, 145, fill='white', outline='')
 
-        self.speed_limit_number = tk.Label(self.navi_frame, text="50", bg="white", font=("Helvetica", 48, 'bold'))
+        self.speed_limit_number = tk.Label(self.navi_frame, text="50", bg="white", font=("Helvetica", 40, 'bold'))
         self.speed_limit_number.place(x=240, y=250, anchor="center")
         self.direction_label = tk.Label(self.navi_frame, text="", fg="white", bg="black", font=("Helvetica", 27))
         self.direction_label.place(x=470, y=240, anchor="center")
